@@ -1,6 +1,6 @@
 FROM python:alpine3.16
 ENV PYTHONUNBUFFERED=1
-WORKDIR /webpydj
+WORKDIR /sources
 COPY required.txt .
 RUN pip install --upgrade pip
 RUN pip install -r required.txt
