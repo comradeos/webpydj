@@ -2,8 +2,8 @@
 from django.http import HttpResponse
 
 # Create your views here.
-def coreapp(request):
-    return HttpResponse('Страница coreapp')
+def index(request):
+    return HttpResponse('Страница index')
 
 def categories(request):
     return HttpResponse('Страница categories')
