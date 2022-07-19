@@ -13,7 +13,7 @@ def categories(request, id):
 
 def archive(request, year):
     if int(year) > 2022:
-        return redirect('/')
+        return redirect('home', permanent=True) # 301 == permanent=True
         # raise Http404()
     return HttpResponse(f'Страница archive, {year}')
 
