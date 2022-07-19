@@ -1,5 +1,6 @@
 # from django.shortcuts import render
 from django.http import Http404, HttpResponse, HttpResponseNotFound
+from django.shortcuts import redirect
 
 # Create your views here.
 def index(request):
@@ -12,9 +13,9 @@ def categories(request, id):
 
 def archive(request, year):
     if int(year) > 2022:
-        raise Http404()
+        return redirect('/')
+        # raise Http404()
     return HttpResponse(f'Страница archive, {year}')
 
 def page_404(request, exception):
     return HttpResponseNotFound('Страница не найдена!')
-    
