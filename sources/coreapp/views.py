@@ -5,5 +5,8 @@ from django.http import HttpResponse
 def index(request):
     return HttpResponse('Страница index')
 
-def categories(request):
-    return HttpResponse('Страница categories')
+def categories(request, id):
+    return HttpResponse(f'Страница categories, {id}')
+
+def archive(request, year):
+    return HttpResponse(f'Страница archive, {year}')
