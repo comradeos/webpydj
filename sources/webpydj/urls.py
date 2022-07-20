@@ -22,4 +22,10 @@ urlpatterns = [
     path('', include('coreapp.urls')),
 ]
 
+import django.conf.global_settings
+from django.template.context_processors import static
+
+if django.conf.global_settings.DEBUG:
+    urlpatterns += static(django.conf.global_settings.MEDIA_URL, document_root=django.conf.global_settings.MEDIA_ROOT)
+
 handler404 = page_404
