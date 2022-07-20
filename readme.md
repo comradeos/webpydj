@@ -33,3 +33,19 @@ python manage.py startapp coreapp
 'apps' is the file 'apps.py' located in 'coreapp'  
 'CoreappConfig' is the name of auto-generated class in file 'apps.py'  
 
+#### Connect to database:  
+1. Create database my_db  
+2. Open [project_name]->settings.py  
+3. Add next:  
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'mysql.connector.django', 
+        'NAME': 'my_db',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'db',
+        'PORT': '3306',
+    }
+}
+```
