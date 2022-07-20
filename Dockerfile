@@ -1,4 +1,4 @@
-FROM python:alpine3.16
+FROM python:3.10-buster
 ENV PYTHONUNBUFFERED=1
 WORKDIR /sources
 COPY requires.txt .
