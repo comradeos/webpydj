@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-r^h-7vwr!qv-4ww2+(vp!=)ufen$h2@9z%&x@1k7a&al#sig#&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -89,9 +89,6 @@ DATABASES = {
         'PASSWORD': 'root',
         'HOST': 'db',
         'PORT': '3306',
-        'OPTIONS': {
-            'auth_plugin': 'mysql_native_password'
-        }
     }
 }
 
@@ -135,3 +132,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
