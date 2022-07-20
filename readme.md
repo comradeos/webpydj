@@ -15,7 +15,11 @@ python manage.py runserver
 
 #### Docker Python/Django interactive mode
 ```
-docker exec -it webpydj-python-1 sh
+docker exec -it webpydj-python-1 python  
+```
+#### Docker Python Bash interactive mode
+```
+docker exec -it webpydj-python-1 bash    
 ```
 
 #### Create new Django application named 'coreapp'
@@ -48,4 +52,21 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+```
+
+#### Make migration file:
+```
+docker exec -it webpydj-python-1 bash    
+```
+```
+python manage.py makemigrations  
+``` 
+#### Check sql going to be executed for app 'coreapp':
+```
+python manage.py sqlmigrate coreapp 0001
+```
+
+#### Migrate to database:
+```
+python manage.py migrate
 ```
