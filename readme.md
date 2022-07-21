@@ -70,3 +70,20 @@ python manage.py sqlmigrate coreapp 0001
 ```
 python manage.py migrate
 ```
+#### Django shell session
+```
+python manage.py shell
+```
+#### Create new record
+1. Import [class] from [application].models  
+```
+from coreapp.models import Languages
+```
+2. Create new object of record  
+```
+new_record = Languages(title='Python', content='A high-level, interpreted, general-purpose programming language.')
+```
+3. Save new record  
+```
+new_record.save()
+```
