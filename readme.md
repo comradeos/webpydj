@@ -106,11 +106,11 @@ Languages.objects # <django.db.models.manager.Manager object at 0x7f0dc2d467a0>
 ```
 Languages.objects.create(title='C++', content='A general-purpose programming language created by Danish computer scientist Bjarne Stroustrup as an extension of the C programming language, or "C with Classes".')
 ```
-#### Read all records from database:
+#### Read all records from table coreapp_languages:
 ```
 Languages.objects.all()
 ```
-#### Read all records from database with id==1 :
+#### All records from table coreapp_languages where id==1 :
 ```
 Languages.objects.filter(id=1)
 ```
@@ -118,7 +118,7 @@ or
 ```
 Languages.objects.filter(pk=1)
 ```
-#### Read all records from database with id>=2 :
+#### All records where with id>=2 :
 ```
 Languages.objects.filter(id__gte=2)
 ```
@@ -126,11 +126,15 @@ or
 ```
 Languages.objects.filter(pk__gte=2)
 ```
-#### Read all records from database with id<>=2 :
+#### All records where id<=2 :
 ```
 Languages.objects.filter(id__lte=2)
 ```
 or  
 ```
 Languages.objects.filter(pk__lte=2)
+```
+#### All records where id!=2 :
+```
+Languages.objects.exclude(id=2)
 ```
