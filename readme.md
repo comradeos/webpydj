@@ -150,3 +150,14 @@ Languages.objects.filter(id__lte=4).order_by('title')
 ```
 Languages.objects.filter(id__lte=4).order_by('-title')
 ```
+
+#### Змінити title запису
+```
+item = Languages.objects.get(title='C++')
+```
+```
+item.title = 'C+++'
+```
+```
+item.save()
+```
