@@ -91,4 +91,11 @@ new_record.save()
 ```
 new_record.pk
 ```
+#### Check executed queries
+```
+from django.db import connection
+```
+```
+connection.queries
+```
 
