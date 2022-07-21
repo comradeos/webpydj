@@ -142,3 +142,11 @@ Languages.objects.exclude(id=2)
 ```
 Languages.objects.get(id=1)
 ```
+#### Сортування результатів від 0-9
+```
+Languages.objects.filter(id__lte=4).order_by('title')
+```
+#### Сортування результатів від 9-0
+```
+Languages.objects.filter(id__lte=4).order_by('-title')
+```
