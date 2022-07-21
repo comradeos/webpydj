@@ -110,11 +110,27 @@ Languages.objects.create(title='C++', content='A general-purpose programming lan
 ```
 Languages.objects.all()
 ```
-#### Read all records from database with id=1 :
+#### Read all records from database with id==1 :
 ```
 Languages.objects.filter(id=1)
 ```
-#### Read all records from database with id 1 :
+or  
 ```
-Languages.objects.filter(id=1)
+Languages.objects.filter(pk=1)
+```
+#### Read all records from database with id>=2 :
+```
+Languages.objects.filter(id__gte=2)
+```
+or  
+```
+Languages.objects.filter(pk__gte=2)
+```
+#### Read all records from database with id<>=2 :
+```
+Languages.objects.filter(id__lte=2)
+```
+or  
+```
+Languages.objects.filter(pk__lte=2)
 ```
