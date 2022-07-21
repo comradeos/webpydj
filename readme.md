@@ -87,3 +87,8 @@ new_record = Languages(title='Python', content='A high-level, interpreted, gener
 ```
 new_record.save()
 ```
+#### Get primary key of new record
+```
+new_record.pk
+```
+
