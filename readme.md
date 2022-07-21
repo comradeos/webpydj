@@ -134,7 +134,11 @@ or
 ```
 Languages.objects.filter(pk__lte=2)
 ```
-#### All records where id!=2 :
+#### All records exclude id!=2 :
 ```
 Languages.objects.exclude(id=2)
+```
+#### Get one records where id=1:
+```
+Languages.objects.get(id=1)
 ```
