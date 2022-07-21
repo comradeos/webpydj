@@ -161,3 +161,10 @@ item.title = 'C+++'
 ```
 item.save()
 ```
+#### Видалити title запису
+```
+item = Languages.objects.get(title='JavaScript')
+```
+```
+item.delete()
+```
