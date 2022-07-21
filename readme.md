@@ -98,4 +98,23 @@ from django.db import connection
 ```
 connection.queries
 ```
-
+#### Record object methods
+```
+Languages.objects # <django.db.models.manager.Manager object at 0x7f0dc2d467a0>
+```
+#### Create without 'save()' method: 
+```
+Languages.objects.create(title='C++', content='A general-purpose programming language created by Danish computer scientist Bjarne Stroustrup as an extension of the C programming language, or "C with Classes".')
+```
+#### Read all records from database:
+```
+Languages.objects.all()
+```
+#### Read all records from database with id=1 :
+```
+Languages.objects.filter(id=1)
+```
+#### Read all records from database with id 1 :
+```
+Languages.objects.filter(id=1)
+```
