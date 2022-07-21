@@ -2,45 +2,45 @@
 Simple Python/Django based project, learning features/documentation of this framework
 
 
-# Common Django Commands
-#### Create a Django project
+# Основні Django команди
+#### Створити новий проект my_project
 ```
 django-admin startproject my_project
 ```
 
-#### Run Django server
+#### Запустити сервер
 ```
 python manage.py runserver
 ```
 
-#### Docker Python/Django interactive mode
+#### Docker: інтерактивний режим Python
 ```
 docker exec -it webpydj-python-1 python  
 ```
-#### Docker Python Bash interactive mode
+#### Docker: інтерактивний режим Bash
 ```
 docker exec -it webpydj-python-1 bash    
 ```
 
-#### Create new Django application named 'coreapp'
+#### Створити новий додаток з ім'ям 'coreapp'
 ```
 python manage.py startapp coreapp
 ```
 
-#### Register 'coreapp' in webpydj project
-1. Open webpydj->settings.py  
-2. Add to list 'INSTALLED_APPS' next:  
+#### Зареєструвати додаток 'coreapp' в проекті
+1. Відкрити webpydj->settings.py  
+2. Додати у список 'INSTALLED_APPS' наступне:  
 ```
 'coreapp.apps.CoreappConfig',
 ```
-'coreapp' is an application name (realized as a package)  
-'apps' is the file 'apps.py' located in 'coreapp'  
-'CoreappConfig' is the name of auto-generated class in file 'apps.py'  
+'coreapp' це назва додатку (додатки реалізовані як пакети)  
+'apps' це файл 'apps.py' який знаходиться у 'coreapp'  
+'CoreappConfig' це згенерована назва класу у файлі 'apps.py'  
 
-#### Connect to database:  
-1. Create database my_db  
-2. Open [project_name]->settings.py  
-3. Add next:  
+#### Підключення MySQL бази даних:  
+1. Створити нову базу з іменем my_db  
+2. Відкрити [назва_проекту]->settings.py  
+3. Додати наступне:  
 ```
 DATABASES = {
     'default': {
@@ -54,63 +54,63 @@ DATABASES = {
 }
 ```
 
-#### Make migration file:
+#### Створити файли міграцій:
 ```
 docker exec -it webpydj-python-1 bash    
 ```
 ```
 python manage.py makemigrations  
 ``` 
-#### Check sql going to be executed for app 'coreapp':
+#### Подивитись який саме SQL запит має виконатись для додатки 'coreapp':
 ```
 python manage.py sqlmigrate coreapp 0001
 ```
 
-#### Migrate to database:
+#### Мігрувати в базу даних:
 ```
 python manage.py migrate
 ```
-#### Django shell session
+#### Відкрити Django shell сесія
 ```
 python manage.py shell
 ```
-#### Create new record
-1. Import [class] from [application].models  
+#### Створити новій запис
+1. Імпортувати [клас] з [додаток].models  
 ```
 from coreapp.models import Languages
 ```
-2. Create new object of record  
+2. Створити новий об'єкт запису  
 ```
 new_record = Languages(title='Python', content='A high-level, interpreted, general-purpose programming language.')
 ```
-3. Save new record  
+3. Зберегти    
 ```
 new_record.save()
 ```
-#### Get primary key of new record
+#### Отримати ключ нового запису  
 ```
 new_record.pk
 ```
-#### Check executed queries
+#### Подивитись виконані запити  
 ```
 from django.db import connection
 ```
 ```
 connection.queries
 ```
-#### Record object methods
+#### Методи об'єкту записів 
 ```
 Languages.objects # <django.db.models.manager.Manager object at 0x7f0dc2d467a0>
 ```
-#### Create without 'save()' method: 
+#### Створити без використання 'save()' методу: 
 ```
 Languages.objects.create(title='C++', content='A general-purpose programming language created by Danish computer scientist Bjarne Stroustrup as an extension of the C programming language, or "C with Classes".')
 ```
-#### Read all records from table coreapp_languages:
+#### Отримати всі записи з таблиці coreapp_languages:
 ```
 Languages.objects.all()
 ```
-#### All records from table coreapp_languages where id==1 :
+#### Всі записи з таблиці coreapp_languages де  id==1 :
 ```
 Languages.objects.filter(id=1)
 ```
@@ -118,7 +118,7 @@ or
 ```
 Languages.objects.filter(pk=1)
 ```
-#### All records where with id>=2 :
+#### Всі записи з таблиці coreapp_languages де id>=2 :
 ```
 Languages.objects.filter(id__gte=2)
 ```
@@ -126,7 +126,7 @@ or
 ```
 Languages.objects.filter(pk__gte=2)
 ```
-#### All records where id<=2 :
+#### Всі записи з таблиці coreapp_languages де id<=2 :
 ```
 Languages.objects.filter(id__lte=2)
 ```
@@ -134,11 +134,11 @@ or
 ```
 Languages.objects.filter(pk__lte=2)
 ```
-#### All records exclude id!=2 :
+#### Всі записи з таблиці coreapp_languages де id!=2 :
 ```
 Languages.objects.exclude(id=2)
 ```
-#### Get one records where id=1:
+#### Тільки один запис де  id=1:
 ```
 Languages.objects.get(id=1)
 ```
