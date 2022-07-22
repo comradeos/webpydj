@@ -1,10 +1,22 @@
-# from django.shortcuts import render
 from django.http import Http404, HttpResponse, HttpResponseNotFound
 from django.shortcuts import redirect, render
 
-# Create your views here.
+
+menu = [
+    'About',
+    'New Article',
+    'Contact',
+    'Login',
+]
+
+
+
 def index(request):
-    return render(request, '')
+    return render(request, 'coreapp/index.html', {'menu': menu, 'title': 'Index Page',})
+
+def about(request):
+    return render(request, 'coreapp/about.html', {'menu': menu, 'title': 'About Page',})
+
 
 def categories(request, id):
     if request.GET:
