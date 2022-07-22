@@ -1,10 +1,10 @@
 # from django.shortcuts import render
 from django.http import Http404, HttpResponse, HttpResponseNotFound
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 # Create your views here.
 def index(request):
-    return HttpResponse('Страница index')
+    return render(request, '')
 
 def categories(request, id):
     if request.GET:
