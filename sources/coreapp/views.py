@@ -1,5 +1,6 @@
 from django.http import Http404, HttpResponse, HttpResponseNotFound
 from django.shortcuts import redirect, render
+from coreapp.models import Languages
 
 
 menu = [
@@ -10,12 +11,18 @@ menu = [
 ]
 
 
-
 def index(request):
-    return render(request, 'coreapp/index.html', {'menu': menu, 'title': 'Index Page',})
+    posts = Languages.objects.all()
+    return render(request, 'coreapp/index.html',
+                  context={
+                      'menu': menu,
+                      'posts': posts,
+                      'title': 'Index Page',
+                  })
+
 
 def about(request):
-    return render(request, 'coreapp/about.html', {'menu': menu, 'title': 'About Page',})
+    return render(request, 'coreapp/about.html', {'menu': menu, 'title': 'About Page', })
 
 
 def categories(request, id):
@@ -23,11 +30,13 @@ def categories(request, id):
         print(request.GET)
     return HttpResponse(f'Страница categories, {id}')
 
+
 def archive(request, year):
     if int(year) > 2022:
-        return redirect('home', permanent=True) # 301 == permanent=True
+        return redirect('home', permanent=True)  # 301 == permanent=True
         # raise Http404()
     return HttpResponse(f'Страница archive, {year}')
+
 
 def page_404(request, exception):
     return HttpResponseNotFound('Страница не найдена!')
