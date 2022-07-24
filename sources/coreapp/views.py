@@ -17,12 +17,12 @@ def page_404(request, exception):
 
 def index(request):
     posts = Languages.objects.all()
-    return render(request, 'coreapp/index.html',
-                  context={
-                      'menu': menu,
-                      'posts': posts,
-                      'title': 'Index Page',
-                  })
+    context = {
+        'menu': menu,
+        'posts': posts,
+        'title': 'Index Page',
+    }
+    return render(request, 'coreapp/index.html', context=context)
 
 
 def about(request): return HttpResponse("about page")
