@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Languages(models.Model):
@@ -11,3 +12,6 @@ class Languages(models.Model):
     
     def __repr__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('post', kwargs={'post_id': self.pk})
