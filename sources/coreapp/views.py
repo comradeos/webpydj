@@ -11,6 +11,10 @@ menu = [
 ]
 
 
+def page_404(request, exception):
+    return HttpResponseNotFound('Страница не найдена!')
+
+
 def index(request):
     posts = Languages.objects.all()
     return render(request, 'coreapp/index.html',
@@ -21,22 +25,7 @@ def index(request):
                   })
 
 
-def about(request):
-    return render(request, 'coreapp/about.html', {'menu': menu, 'title': 'About Page', })
-
-
-def categories(request, id):
-    if request.GET:
-        print(request.GET)
-    return HttpResponse(f'Страница categories, {id}')
-
-
-def archive(request, year):
-    if int(year) > 2022:
-        return redirect('home', permanent=True)  # 301 == permanent=True
-        # raise Http404()
-    return HttpResponse(f'Страница archive, {year}')
-
-
-def page_404(request, exception):
-    return HttpResponseNotFound('Страница не найдена!')
+def about(request): return HttpResponse("about page")
+def add_page(request): return HttpResponse("add_page page")
+def contact(request): return HttpResponse("contact page")
+def login(request): return HttpResponse("login page")
