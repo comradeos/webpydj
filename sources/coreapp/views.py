@@ -4,10 +4,10 @@ from coreapp.models import Languages
 
 
 menu = [
-    'About',
-    'New Article',
-    'Contact',
-    'Login',
+    {'title': 'About', 'url_name': 'about', },
+    {'title': 'Add Page', 'url_name': 'add_page', },
+    {'title': 'Contact', 'url_name': 'contact', },
+    {'title': 'Login', 'url_name': 'login', },
 ]
 
 
