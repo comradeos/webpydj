@@ -33,4 +33,19 @@ def add_page(request): return HttpResponse("add_page page")
 def contact(request): return HttpResponse("contact page")
 def login(request): return HttpResponse("login page")
 def show_post(request, post_id): return HttpResponse(f"show_post id {post_id}")
-def show_category(request, category_id): return HttpResponse(f"show category id {category_id}")
+
+def show_category(request, cat_id): 
+    posts = Languages.objects.filter(cat_id=cat_id)
+    cats = Categories.objects.all()
+    
+    if len(posts) == 0: 
+        raise Http404()
+    
+    context = {
+        'menu': menu,
+        'posts': posts,
+        'cats': cats,
+        'cat_selected': cat_id,
+        'title': 'Category Page',
+    }
+    return render(request, 'coreapp/index.html', context=context)
