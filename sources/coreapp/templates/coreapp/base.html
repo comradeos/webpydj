@@ -40,13 +40,25 @@
                         <!-- Sidebar слева -->
                         <td valign="top" class="left-chapters">
                             <ul id="leftchapters">
-                                <li class="selected">Compiled</li>
-                                <li><a href="#">Interpreted</a></li>
+
+                                {% if cat_selected == 0 %}
+                                    <li class="selected">All Categories</li>
+                                {% else %}
+                                    <li><a href="{% url 'home' %}">All Categories</a></li>
+                                {% endif %}
+
+                                {% for c in cats %}
+                                {% if c.pk == cat_selected %}
+                                    <li class="selected">{{c.name}}</li>
+                                {% else %}
+                                    <li><a href="{{ c.get_absolute_url }}">{{c.name}}</a></li>
+                                    <!-- <li><a href="{% url 'category' c.id %}">{{c.name}}</a></li> -->
+                                {% endif %}
+                                {% endfor %}
+
                                 <li class="share">
                                     <p>Channel</p>
-                                    <a class="share-yt"
-                                        href="#"
-                                        target="_blank" rel="nofollow"></a>
+                                    <a class="share-yt" href="#" target="_blank" rel="nofollow"></a>
                                 </li>
                             </ul>
                         </td>
@@ -72,7 +84,10 @@
         <tr>
             <td valign=top>
                 <div id="footer">
-                    <p>&copy;2022 A programming language is any set of rules that converts strings, or graphical program elements in the case of visual programming languages, to various kinds of machine code output.[citation needed] Programming languages are one kind of computer language, and are used in computer programming to implement algorithms.</p>
+                    <p>&copy;2022 A programming language is any set of rules that converts strings, or graphical program
+                        elements in the case of visual programming languages, to various kinds of machine code
+                        output.[citation needed] Programming languages are one kind of computer language, and are used
+                        in computer programming to implement algorithms.</p>
                 </div>
             </td>
         </tr>
