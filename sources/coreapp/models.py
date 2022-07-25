@@ -22,3 +22,6 @@ class Categories(models.Model):
     
     def __repr__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'category_id': self.pk})
