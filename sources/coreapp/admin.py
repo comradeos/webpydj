@@ -10,4 +10,11 @@ class LanguagesAdmin(admin.ModelAdmin):
 
 admin.site.register(Languages, LanguagesAdmin)
 
-admin.site.register(Categories)
+
+
+class CategoriesAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+    list_display_links = ('id', 'name')
+    search_field = ('name')
+
+admin.site.register(Categories, CategoriesAdmin)
