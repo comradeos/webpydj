@@ -11,11 +11,17 @@ class Languages(models.Model):
     is_published = models.BooleanField(default=True)
     cat = models.ForeignKey('Categories', on_delete=models.PROTECT, null=True)
     
-    def __repr__(self):
+    def __str__(self):
         return self.title
     
     def get_absolute_url(self):
         return reverse('post', kwargs={'post_id': self.pk})
+    
+    class Meta:
+        verbose_name = 'Programming Languages'
+        verbose_name_plural = 'Programming Languages'
+        ordering = ['time_create', 'title']
+
 
 class Categories(models.Model):
     name = models.CharField(max_length=100, db_index=True)
