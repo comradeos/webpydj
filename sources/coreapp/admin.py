@@ -11,7 +11,6 @@ class LanguagesAdmin(admin.ModelAdmin):
 admin.site.register(Languages, LanguagesAdmin)
 
 
-
 class CategoriesAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     list_display_links = ('id', 'name')
