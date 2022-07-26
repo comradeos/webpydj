@@ -4,6 +4,7 @@ from django.urls import reverse
 # Create your models here.
 class Languages(models.Model):
     title = models.CharField(max_length=255)
+    # title = models.CharField(max_length=255, verbose_name='Заголовок')
     content = models.TextField(blank=True)
     photo = models.ImageField(upload_to='images/%Y/%m/%d/')
     time_create = models.DateTimeField(auto_now_add=True)
