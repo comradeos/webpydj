@@ -168,3 +168,11 @@ item = Languages.objects.get(title='JavaScript')
 ```
 item.delete()
 ```
+#### Створити супер користувача
+
+```
+python manage.py createsuperuser
+```
+
+```
+```
