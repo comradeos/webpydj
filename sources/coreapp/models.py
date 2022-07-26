@@ -19,9 +19,9 @@ class Languages(models.Model):
         return reverse('post', kwargs={'post_id': self.pk})
     
     class Meta:
-        verbose_name = 'Programming Languages'
-        verbose_name_plural = 'Programming Languages'
-        ordering = ['time_create', 'title']
+        verbose_name = 'Language' # відображення в адмін панелі
+        verbose_name_plural = 'Languages' # відображення у множині
+        ordering = ['time_create', 'title'] # сортування в адмін панелі та на сайті
 
 
 class Categories(models.Model):
@@ -32,3 +32,8 @@ class Categories(models.Model):
     
     def get_absolute_url(self):
         return reverse('category', kwargs={'cat_id': self.pk})
+    
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+        
