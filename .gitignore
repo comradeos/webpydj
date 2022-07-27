@@ -1,4 +1,4 @@
 data/*
 sources/webpydj/__pycache__/*
 sources/coreapp/__pycache__/*
-sources/coreapp/migrations/__pycache__/*
+sources/coreapp/templatetags/__pycache__/*
