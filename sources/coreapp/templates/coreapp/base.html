@@ -1,4 +1,5 @@
 {% load static %}
+{% load coreapp_tags %}
 
 <!DOCTYPE html>
 <html>
@@ -39,6 +40,9 @@
                     <tr>
                         <!-- Sidebar слева -->
                         <td valign="top" class="left-chapters">
+
+                            {% get_categories %}
+
                             <ul id="leftchapters">
 
                                 {% if cat_selected == 0 %}
