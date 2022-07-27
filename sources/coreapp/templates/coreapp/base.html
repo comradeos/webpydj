@@ -41,7 +41,7 @@
                         <!-- Sidebar слева -->
                         <td valign="top" class="left-chapters">
 
-                            {% get_categories %}
+                            {% get_categories as categories %}
 
                             <ul id="leftchapters">
 
@@ -51,7 +51,7 @@
                                     <li><a href="{% url 'index' %}">All Categories</a></li>
                                 {% endif %}
 
-                                {% for c in cats %}
+                                {% for c in categories %}
                                 {% if c.pk == cat_selected %}
                                     <li class="selected">{{c.name}}</li>
                                 {% else %}
