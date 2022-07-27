@@ -17,11 +17,9 @@ def page_404(request, exception):
 
 def index(request):
     posts = Languages.objects.all()
-    cats = Categories.objects.all()
     context = {
         'menu': menu,
         'posts': posts,
-        'cats': cats,
         'cat_selected': 0,
         'title': 'Index Page',
     }
@@ -36,7 +34,6 @@ def show_post(request, post_id): return HttpResponse(f"show_post id {post_id}")
 
 def show_category(request, cat_id): 
     posts = Languages.objects.filter(cat_id=cat_id)
-    cats = Categories.objects.all()
     
     if len(posts) == 0: 
         raise Http404()
@@ -44,7 +41,6 @@ def show_category(request, cat_id):
     context = {
         'menu': menu,
         'posts': posts,
-        'cats': cats,
         'cat_selected': cat_id,
         'title': 'Category Page',
     }
