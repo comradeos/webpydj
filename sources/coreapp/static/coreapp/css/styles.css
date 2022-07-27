@@ -73,7 +73,7 @@ ul.list-articles {
 }
 
 ul.list-articles li {
-	border-bottom: 1px solid #ccc;
+	/* border-bottom: 1px solid #ccc; */
 }
 
 .table-page {
