@@ -24,7 +24,7 @@ def show_categories(sort=None, cat_selected=0):
     }
 
 
-@register.inclusion_tag('coreapp/menu.html')
+@register.inclusion_tag('coreapp/menu.html') # в какой файл вернуть значение
 def show_menu():
     menu = [
         {'title': 'About', 'url_name': 'about', },
