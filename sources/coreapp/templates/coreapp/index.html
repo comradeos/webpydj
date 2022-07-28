@@ -20,7 +20,7 @@
 		{% endautoescape %}
 
 		<div class="clear"></div>
-		<p class="link-read-post"><a href="{% url 'post' p.pk %}">Read More</a></p>
+		<p class="link-read-post"><a href="{% url 'post' p.slug %}">Read More</a></p>
 	</li>
 
 	{% endfor %}
