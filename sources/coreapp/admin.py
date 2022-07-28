@@ -8,6 +8,7 @@ class LanguagesAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'title')
     search_field = ('title', 'content')
     list_filter = ('is_published', 'time_create')
+    prepopulated_fields = { 'slug':("title", ) }
 
 admin.site.register(Languages, LanguagesAdmin)
 
@@ -16,5 +17,6 @@ class CategoriesAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     list_display_links = ('id', 'name')
     search_field = ('name')
+    prepopulated_fields = { 'slug':("name", ) }
 
 admin.site.register(Categories, CategoriesAdmin)
