@@ -1,10 +1,12 @@
 from django.db import models
+from django.forms import SlugField
 from django.urls import reverse
 
 # Create your models here.
 class Languages(models.Model):
     title = models.CharField(max_length=255)
     # title = models.CharField(max_length=255, verbose_name='Заголовок')
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='URL')
     content = models.TextField(blank=True)
     photo = models.ImageField(upload_to='images/%Y/%m/%d/')
     time_create = models.DateTimeField(auto_now_add=True)
