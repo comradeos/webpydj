@@ -28,7 +28,7 @@ img.img-article-left {
 	max-width: 300px;
 	height: auto;
 	float: left;
-	padding: 0 10px 10px 0;
+	padding: 0 25px 25px 0;
 }
 
 img.img-article-left.thumb {
@@ -38,14 +38,20 @@ img.img-article-left.thumb {
 
 p.link-read-post {
 	text-align: right;
+	margin-bottom: 50px;
 }
 
 p.link-read-post a {
-	padding: 10px;
-	min-width: 100px;
-	background: #333671;
-	color: #fff;
-	text-decoration: none;
+    padding: 10px 20px;
+    min-width: 100px;
+    background: #3f4137;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 100px;
+}
+
+p.link-read-post a:hover {
+	background: #585a4f;
 }
 
 div.article-panel {
