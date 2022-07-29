@@ -1,7 +1,7 @@
 from django.http import Http404, HttpResponse, HttpResponseNotFound
 from django.shortcuts import get_object_or_404, redirect, render
 from coreapp.models import Categories, Languages
-
+from coreapp.forms import *
 
 def page_404(request, exception):
     return HttpResponseNotFound('Страница не найдена!')
@@ -42,7 +42,24 @@ def show_post(request, post_slug):
 
 
 def add_page(request): 
-    return render(request, 'coreapp/add_page.html', context={'title':'Add new page'})
+    if request.method == 'POST':
+        form = AddPostForm(request.POST)
+        if form.is_valid():
+            #print(form.cleaned_data)
+            try:
+                Languages.objects.create(**form.cleaned_data)
+                return redirect('index')
+            except:
+                form.add_error(None, 'Error: can not insert into database!')
+
+    else:
+        form = AddPostForm()
+        
+    context = {
+        'title': 'Add new page',
+        'form': form,
+    }
+    return render(request, 'coreapp/add_page.html', context=context)
 
 
 def about(request): return HttpResponse("about page")
