@@ -41,7 +41,10 @@ def show_post(request, post_slug):
     return render(request, 'coreapp/post.html', context=context)
 
 
+def add_page(request): 
+    return render(request, 'coreapp/add_page.html', context={'title':'Add new page'})
+
+
 def about(request): return HttpResponse("about page")
-def add_page(request): return HttpResponse("add_page page")
 def contact(request): return HttpResponse("contact page")
 def login(request): return HttpResponse("login page")
