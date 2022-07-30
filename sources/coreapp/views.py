@@ -43,11 +43,10 @@ def show_post(request, post_slug):
 
 def add_page(request): 
     if request.method == 'POST':
-        form = AddPostForm(request.POST)
+        form = AddPostForm(request.POST, request.FILES)
         if form.is_valid():
-            #print(form.cleaned_data)
             try:
-                Languages.objects.create(**form.cleaned_data)
+                form.save()
                 return redirect('index')
             except:
                 form.add_error(None, 'Error: can not insert into database!')
