@@ -1,8 +1,9 @@
 from django.http import Http404, HttpResponse, HttpResponseNotFound
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
 from coreapp.models import Categories, Languages
 from coreapp.forms import *
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 def page_404(request, exception):
     return HttpResponseNotFound('Страница не найдена!')
@@ -50,7 +51,7 @@ class LanguagesCategory(ListView):
     
     def get_queryset(self):
         return Languages.objects.filter(cat_id__slug=self.kwargs['cat_slug'], is_published=True)
-  
+
   
     
 # def show_category(request, cat_id): 
@@ -68,35 +69,61 @@ class LanguagesCategory(ListView):
 
 
 
-def show_post(request, post_slug): 
-    post = get_object_or_404(Languages, slug=post_slug)
-    context = {
-        'post': post,
-        'title': post.title,
-        'cat_selected': post.cat_id,
-    }
-    return render(request, 'coreapp/post.html', context=context)
+class ShowPost(DetailView):
+    model = Languages
+    template_name = 'coreapp/post.html'
+    slug_url_kwarg = 'post_slug'
+    # pk_url_kwarg - для id
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['title'] = context['post']
+        return context        
 
 
 
-def add_page(request): 
-    if request.method == 'POST':
-        form = AddPostForm(request.POST, request.FILES)
-        if form.is_valid():
-            try:
-                form.save()
-                return redirect('index')
-            except:
-                form.add_error(None, 'Error: can not insert into database!')
+# def show_post(request, post_slug): 
+#     post = get_object_or_404(Languages, slug=post_slug)
+#     context = {
+#         'post': post,
+#         'title': post.title,
+#         'cat_selected': post.cat_id,
+#     }
+#     return render(request, 'coreapp/post.html', context=context)
 
-    else:
-        form = AddPostForm()
+
+
+class AddPage(CreateView):
+    form_class = AddPostForm
+    template_name = 'coreapp/add_page.html'
+    success_url = reverse_lazy('index')
+    
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Add Page'
+        return context      
+
+
+
+# def add_page(request): 
+#     if request.method == 'POST':
+#         form = AddPostForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             try:
+#                 form.save()
+#                 return redirect('index')
+#             except:
+#                 form.add_error(None, 'Error: can not insert into database!')
+
+#     else:
+#         form = AddPostForm()
         
-    context = {
-        'title': 'Add new page',
-        'form': form,
-    }
-    return render(request, 'coreapp/add_page.html', context=context)
+#     context = {
+#         'title': 'Add new page',
+#         'form': form,
+#     }
+#     return render(request, 'coreapp/add_page.html', context=context)
 
 
 
