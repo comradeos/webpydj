@@ -5,9 +5,12 @@ from coreapp.models import Categories, Languages
 from coreapp.forms import *
 from django.views.generic import ListView, DetailView, CreateView
 
+
 def page_404(request, exception):
     return HttpResponseNotFound('Страница не найдена!')
 
+
+# ------------------------------------------------------------------------------
 class LanguagesHome(ListView):
     '''Создание представления на основе класса.
     '''
@@ -26,7 +29,6 @@ class LanguagesHome(ListView):
     def get_queryset(self):
         return Languages.objects.filter(is_published=True)
               
-              
 # def index(request):
 #     posts = Languages.objects.all()
 #     context = {
@@ -35,8 +37,10 @@ class LanguagesHome(ListView):
 #         'title': 'Index Page',
 #     }
 #     return render(request, 'coreapp/index.html', context=context)
+# ------------------------------------------------------------------------------
 
 
+# ------------------------------------------------------------------------------
 class LanguagesCategory(ListView):
     model = Languages
     template_name = 'coreapp/index.html'
@@ -52,23 +56,20 @@ class LanguagesCategory(ListView):
     def get_queryset(self):
         return Languages.objects.filter(cat_id__slug=self.kwargs['cat_slug'], is_published=True)
 
-  
-    
 # def show_category(request, cat_id): 
 #     posts = Languages.objects.filter(cat_id=cat_id)
-    
 #     if len(posts) == 0: 
 #         raise Http404()
-    
 #     context = {
 #         'posts': posts,
 #         'cat_selected': cat_id,
 #         'title': 'Category Page',
 #     }
 #     return render(request, 'coreapp/index.html', context=context)
+# ------------------------------------------------------------------------------
 
 
-
+# ------------------------------------------------------------------------------
 class ShowPost(DetailView):
     model = Languages
     template_name = 'coreapp/post.html'
@@ -81,8 +82,6 @@ class ShowPost(DetailView):
         context['title'] = context['post']
         return context        
 
-
-
 # def show_post(request, post_slug): 
 #     post = get_object_or_404(Languages, slug=post_slug)
 #     context = {
@@ -91,9 +90,10 @@ class ShowPost(DetailView):
 #         'cat_selected': post.cat_id,
 #     }
 #     return render(request, 'coreapp/post.html', context=context)
+# ------------------------------------------------------------------------------
 
 
-
+# ------------------------------------------------------------------------------
 class AddPage(CreateView):
     form_class = AddPostForm
     template_name = 'coreapp/add_page.html'
@@ -104,8 +104,6 @@ class AddPage(CreateView):
         context['title'] = 'Add Page'
         return context      
 
-
-
 # def add_page(request): 
 #     if request.method == 'POST':
 #         form = AddPostForm(request.POST, request.FILES)
@@ -115,16 +113,14 @@ class AddPage(CreateView):
 #                 return redirect('index')
 #             except:
 #                 form.add_error(None, 'Error: can not insert into database!')
-
 #     else:
 #         form = AddPostForm()
-        
 #     context = {
 #         'title': 'Add new page',
 #         'form': form,
 #     }
 #     return render(request, 'coreapp/add_page.html', context=context)
-
+# ------------------------------------------------------------------------------
 
 
 def about(request): return HttpResponse("about page")
