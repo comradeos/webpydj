@@ -4,14 +4,14 @@ from django.urls import reverse_lazy
 from coreapp.models import Categories, Languages
 from coreapp.forms import *
 from django.views.generic import ListView, DetailView, CreateView
+from coreapp.utils import DataMixin
 
 
 def page_404(request, exception):
     return HttpResponseNotFound('Страница не найдена!')
 
 
-# ------------------------------------------------------------------------------
-class LanguagesHome(ListView):
+class LanguagesHome(DataMixin, ListView):
     '''Создание представления на основе класса.
     '''
     model = Languages # модель 
@@ -22,25 +22,24 @@ class LanguagesHome(ListView):
         '''Передача дополнительных элементов в шаблон
         '''
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Index page' # заголовок страницы
-        context['cat_selected'] = 0 # выбранная категория
-        return context        
+        mix_context = self.get_user_context(title='Index page')
+        return dict(list(context.items()) + list(mix_context.items()))
     
     def get_queryset(self):
         return Languages.objects.filter(is_published=True)
-              
-# def index(request):
-#     posts = Languages.objects.all()
-#     context = {
-#         'posts': posts,
-#         'cat_selected': 0,
-#         'title': 'Index Page',
-#     }
-#     return render(request, 'coreapp/index.html', context=context)
-# ------------------------------------------------------------------------------
 
 
-# ------------------------------------------------------------------------------
+class AddPage(DataMixin, CreateView):
+    form_class = AddPostForm
+    template_name = 'coreapp/add_page.html'
+    success_url = reverse_lazy('index')
+    
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        mix_context = self.get_user_context(title='Add Page')
+        return dict(list(context.items()) + list(mix_context.items()))
+
+
 class LanguagesCategory(ListView):
     model = Languages
     template_name = 'coreapp/index.html'
@@ -56,71 +55,17 @@ class LanguagesCategory(ListView):
     def get_queryset(self):
         return Languages.objects.filter(cat_id__slug=self.kwargs['cat_slug'], is_published=True)
 
-# def show_category(request, cat_id): 
-#     posts = Languages.objects.filter(cat_id=cat_id)
-#     if len(posts) == 0: 
-#         raise Http404()
-#     context = {
-#         'posts': posts,
-#         'cat_selected': cat_id,
-#         'title': 'Category Page',
-#     }
-#     return render(request, 'coreapp/index.html', context=context)
-# ------------------------------------------------------------------------------
 
-
-# ------------------------------------------------------------------------------
 class ShowPost(DetailView):
     model = Languages
     template_name = 'coreapp/post.html'
     slug_url_kwarg = 'post_slug'
-    # pk_url_kwarg - для id
     context_object_name = 'post'
 
     def get_context_data(self, **kwargs): 
         context = super().get_context_data(**kwargs)
         context['title'] = context['post']
         return context        
-
-# def show_post(request, post_slug): 
-#     post = get_object_or_404(Languages, slug=post_slug)
-#     context = {
-#         'post': post,
-#         'title': post.title,
-#         'cat_selected': post.cat_id,
-#     }
-#     return render(request, 'coreapp/post.html', context=context)
-# ------------------------------------------------------------------------------
-
-
-# ------------------------------------------------------------------------------
-class AddPage(CreateView):
-    form_class = AddPostForm
-    template_name = 'coreapp/add_page.html'
-    success_url = reverse_lazy('index')
-    
-    def get_context_data(self, **kwargs): 
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Add Page'
-        return context      
-
-# def add_page(request): 
-#     if request.method == 'POST':
-#         form = AddPostForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             try:
-#                 form.save()
-#                 return redirect('index')
-#             except:
-#                 form.add_error(None, 'Error: can not insert into database!')
-#     else:
-#         form = AddPostForm()
-#     context = {
-#         'title': 'Add new page',
-#         'form': form,
-#     }
-#     return render(request, 'coreapp/add_page.html', context=context)
-# ------------------------------------------------------------------------------
 
 
 def about(request): return HttpResponse("about page")
