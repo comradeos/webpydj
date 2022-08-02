@@ -1,11 +1,11 @@
-from django.http import Http404, HttpResponse, HttpResponseNotFound
-from django.shortcuts import get_object_or_404, redirect, render
+from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse_lazy
 from coreapp.models import Categories, Languages
 from coreapp.forms import *
 from django.views.generic import ListView, DetailView, CreateView
 from coreapp.utils import DataMixin
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def page_404(request, exception):
     return HttpResponseNotFound('Страница не найдена!')
@@ -29,10 +29,12 @@ class LanguagesHome(DataMixin, ListView):
         return Languages.objects.filter(is_published=True)
 
 
-class AddPage(DataMixin, CreateView):
+class AddPage(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddPostForm
     template_name = 'coreapp/add_page.html'
     success_url = reverse_lazy('index')
+    login_url = reverse_lazy('index')
+    raise_exception = True # 403
     
     def get_context_data(self, **kwargs): 
         context = super().get_context_data(**kwargs)
@@ -66,7 +68,6 @@ class ShowPost(DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = context['post']
         return context        
-
 
 def about(request): return HttpResponse("about page")
 def contact(request): return HttpResponse("contact page")
