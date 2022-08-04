@@ -173,7 +173,26 @@ item.delete()
 ```
 python manage.py createsuperuser
 ```
-
-
+#### Paginator
 ```
+from django.core.paginator import Paginator
+```
+#### Список для прикладу
+plist = ['a','b','c','d','e','f']
+#### Створення екземпляру
+```
+p = Paginator(plist, 3)
+```
+#### Кількість елементів 
+```
+p.count
+```
+#### Кількість сторінок
+```
+p.num_pages
+```
+
+#### Показати об'єкти першої сторінки 
+```
+p.page(1).object_list
 ```
