@@ -78,9 +78,9 @@ ul.list-articles {
 	padding: 0;
 }
 
-ul.list-articles li {
+/* ul.list-articles li { */
 	/* border-bottom: 1px solid #ccc; */
-}
+/* } */
 
 .table-page {
 	width: 100%;
