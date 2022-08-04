@@ -17,6 +17,7 @@ class LanguagesHome(DataMixin, ListView):
     model = Languages # модель 
     template_name = 'coreapp/index.html' # имя шаблона для использования
     context_object_name = 'posts' # передать данные как коллекцию с именем posts
+    paginate_by = 3
 
     def get_context_data(self, **kwargs): 
         '''Передача дополнительных элементов в шаблон
