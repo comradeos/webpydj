@@ -79,8 +79,8 @@ class RegisterUser(DataMixin, CreateView):
 
     def get_context_data(self, **kwargs): 
         context = super().get_context_data(**kwargs)
-        context['title'] = context['post']
-        return context        
+        mix_context = self.get_user_context(title='Register')
+        return dict(list(context.items()) + list(mix_context.items()))     
 
 def about(request): return HttpResponse("about page")
 def contact(request): return HttpResponse("contact page")
