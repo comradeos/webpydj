@@ -74,3 +74,4 @@ class ShowPost(DetailView):
 def about(request): return HttpResponse("about page")
 def contact(request): return HttpResponse("contact page")
 def login(request): return HttpResponse("login page")
+def register(request): return HttpResponse("register page")
