@@ -22,3 +22,20 @@ class AddPostForm(forms.ModelForm):
         if  len(title)>200:
             raise ValidationError('Error: title has length over 200 chars.')
         return title
+    
+
+from django.contrib.auth.models import User
+class RegisterUserForm(forms.ModelForm):
+    username = forms.CharField(label='Login', widget=forms.TextInput(attrs={'class': 'form-input'}))
+    password1 = forms.CharField(label='Password', widget=forms.TextInput(attrs={'class': 'form-input'}))
+    password2 = forms.CharField(label='Repeat Password', widget=forms.TextInput(attrs={'class': 'form-input'}))
+    class Meta:
+        model = User
+        fields = ('username', 'password1', 'password2')
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-input'}),
+            'password1': forms.PasswordInput(attrs={'class': 'form-input'}),
+            'password2': forms.PasswordInput(attrs={'class': 'form-input'}),
+        }
+
+    
