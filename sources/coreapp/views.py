@@ -6,6 +6,7 @@ from django.views.generic import ListView, DetailView, CreateView
 from coreapp.utils import DataMixin
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
 
 def page_404(request, exception):
     return HttpResponseNotFound('Страница не найдена!')
@@ -70,8 +71,17 @@ class ShowPost(DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = context['post']
         return context        
+    
+class RegisterUser(DataMixin, CreateView):
+    form_class = UserCreationForm
+    template_name = 'coreapp/register.html'
+    success_url = reverse_lazy('post')
+
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['title'] = context['post']
+        return context        
 
 def about(request): return HttpResponse("about page")
 def contact(request): return HttpResponse("contact page")
 def login(request): return HttpResponse("login page")
-def register(request): return HttpResponse("register page")
