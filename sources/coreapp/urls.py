@@ -12,7 +12,7 @@ urlpatterns = [
     
     path('contact/', contact, name='contact'),
     path('login/', login, name='login'),
-    path('register/', register, name='register'),
+    path('register/', RegisterUser.as_view(), name='register'),
     
     # path('post/<slug:post_slug>/', show_post, name='post'),
     path('post/<slug:post_slug>/', ShowPost.as_view(), name='post'),
